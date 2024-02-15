@@ -12,27 +12,19 @@ export const About = () => {
 	useGSAP(() => {
 		if (paraRef.current) {
 			const text = new SplitType(paraRef.current, { types: "lines" });
-
+			const linePath = document.querySelector(".line-path");
 			text.lines?.forEach((line) => {
 				const tl = gsap.timeline();
 
-				tl.to(line, {
-					x: 250,
+				gsap.to(line, {
+					motionPath: {
+						path: linePath,
+					},
 					scrollTrigger: {
 						trigger: line,
 						scrub: true,
 						start: "top 90%",
 						end: "top center",
-						markers: true,
-					},
-				}).to(line, {
-					x: 0,
-					immediateRender: false,
-					scrollTrigger: {
-						trigger: line,
-						scrub: true,
-						start: "top center",
-						end: "top 10%",
 						markers: true,
 					},
 				});

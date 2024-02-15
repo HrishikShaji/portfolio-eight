@@ -4,19 +4,30 @@ import { useRef } from "react";
 import { Spacer } from "./Spacer";
 import gsap from "gsap";
 import { About } from "./About";
+import { LinePath } from "./LinePath";
 
 export const Sample = () => {
 	const circleRef = useRef<HTMLDivElement>(null);
 	const mainRef = useRef<HTMLDivElement>(null);
+	const lineRef = useRef<HTMLDivElement>(null);
 
 	useGSAP(() => {
-		if (mainRef.current && circleRef.current) {
+		if (mainRef.current && circleRef.current && lineRef.current) {
 			gsap.to(circleRef.current, {
 				scrollTrigger: {
 					trigger: mainRef.current,
 					start: "top top",
 					end: "bottom bottom",
 					pin: circleRef.current,
+					scrub: true,
+				},
+			});
+			gsap.to(lineRef.current, {
+				scrollTrigger: {
+					trigger: mainRef.current,
+					start: "top top",
+					end: "bottom bottom",
+					pin: lineRef.current,
 					scrub: true,
 				},
 			});
@@ -29,6 +40,12 @@ export const Sample = () => {
 			className="w-full bg-neutral-400 min-h-screen items-center relative flex flex-col"
 		>
 			<div className="h-screen relative w-full flex  items-center">
+				<div
+					ref={lineRef}
+					className="h-screen absolute left-[40%] w-[15%] z-20"
+				>
+					<LinePath />
+				</div>
 				<div
 					ref={circleRef}
 					className="h-[500px] absolute left-[15%] w-[500px] rounded-full bg-teal-500 "
