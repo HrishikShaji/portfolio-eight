@@ -9,11 +9,11 @@ import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 
 export default function Home() {
-	return (
-		<main className="">
-			<Spacer />
-			<Sample />
-			<Spacer />
-		</main>
-	);
+  return (
+    <main className="">
+      <Spacer />
+      <Sample />
+      <Spacer />
+    </main>
+  );
 }
