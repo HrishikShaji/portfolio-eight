@@ -5,6 +5,7 @@ import { Spacer } from "./Spacer";
 import gsap from "gsap";
 import { About } from "./About";
 import { LinePath } from "./LinePath";
+import { Arc } from "./Arc";
 
 export const Sample = () => {
 	const circleRef = useRef<HTMLDivElement>(null);
@@ -40,8 +41,8 @@ export const Sample = () => {
 			className="w-full bg-neutral-400 min-h-screen items-center relative flex flex-col"
 		>
 			<div className="h-screen relative w-full flex  items-center">
-				<div ref={lineRef} className="h-screen absolute left-[40%] w-[15%] z-20">
-					<LinePath />
+				<div className=" w-[300px] absolute left-[calc(15%_+_250px)]">
+					<Arc />
 				</div>
 				<div
 					ref={circleRef}
