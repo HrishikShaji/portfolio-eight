@@ -4,60 +4,48 @@ import { data } from "../lib/data";
 import { useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
-import { LinePath } from "./LinePath";
 
 export const About = () => {
-  const paraRef = useRef<HTMLParagraphElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
-  useGSAP(() => {
-    if (paraRef.current) {
-      const text = new SplitType(paraRef.current, { types: "lines" });
-      const linePath = document.querySelector(".line-path");
+	const paraRef = useRef<HTMLParagraphElement>(null);
+	useGSAP(() => {
+		if (paraRef.current) {
+			const text = new SplitType(paraRef.current, { types: "lines" });
 
-      // Calculate the total duration of animation
-      const totalDuration = 2; // Adjust this value as needed
+			text.lines?.forEach((line, i) => {
+				const length = text.lines?.length;
+				const delay = Math.abs(1 / length);
+				const tl = gsap.timeline({});
+				tl.to(line, {
+					transformOrigin: "50% 50%",
+					ease: "power1.inOut",
+					motionPath: {
+						path: "#line-path",
+						alignOrigin: [0, 0.5],
+						align: "#line-path",
+						start: i * delay + 1,
+						end: i * delay,
+						autoRotate: false,
+					},
+					scrollTrigger: {
+						trigger: line,
+						scrub: true,
+						start: "top 90%",
+						end: "top top",
+						markers: true,
+					},
+				});
+			});
+		}
+	}, []);
 
-      // Loop through each line and create animations
-      text.lines?.forEach((line, index) => {
-        const tl = gsap.timeline({
-          delay: index * (totalDuration / text.lines.length), // Delay each animation based on index
-          onComplete: () => {
-            if (index === text.lines.length - 1) {
-              // Animation complete
-            }
-          },
-        });
-
-        tl.to(line, {
-          motionPath: {
-            path: linePath,
-            align: linePath,
-            start: 1,
-            end: 0,
-          },
-          scrollTrigger: {
-            trigger: line,
-            scrub: true,
-            start: "top 90%",
-            end: "top 10%",
-            markers: true,
-          },
-        });
-      });
-    }
-  }, []);
-
-  return (
-    <div className="  text-black py-40 w-full relative flex justify-center  items-center ">
-      <div ref={lineRef} className="h-screen absolute left-[40%] w-[15%] z-20">
-        <LinePath />
-      </div>
-      <h3
-        ref={paraRef}
-        className="text-3xl absolute left-[calc(15%_+_250px)] w-[50%] leading-[50px] text-neutral-300"
-      >
-        {data.about.description}
-      </h3>
-    </div>
-  );
+	return (
+		<div className="  text-black py-40 w-full relative flex justify-center  items-center ">
+			<h3
+				ref={paraRef}
+				className="text-3xl absolute left-[calc(15%_+_250px)] w-[50%] leading-[50px] text-neutral-300"
+			>
+				{data.about.description}
+			</h3>
+		</div>
+	);
 };
