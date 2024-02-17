@@ -8,19 +8,24 @@ import { Spacer } from "./components/Spacer";
 import { About } from "./components/About";
 import { Features } from "./components/Features";
 import { HorizontalScroll } from "./components/HorizontalScroll";
+import { Projects } from "./components/Projects";
+import { Testimonials } from "./components/Testimonials";
+import { Contact } from "./components/Contact";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 
 export default function Home() {
-  return (
-    <main className="bg-black relative">
-      <div className="">
-        <Hero />
-        <About />
-      </div>
-      <Features />
-      <HorizontalScroll />
-      <Spacer />
-    </main>
-  );
+	return (
+		<main className="bg-black relative">
+			<div className="">
+				<Hero />
+				<About />
+			</div>
+			<Features />
+			<HorizontalScroll />
+			<Projects />
+			<Testimonials />
+			<Contact />
+		</main>
+	);
 }
