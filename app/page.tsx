@@ -6,15 +6,19 @@ import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
 import { Hero } from "./components/Hero";
 import { Spacer } from "./components/Spacer";
 import { About } from "./components/About";
+import { Features } from "./components/Features";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 
 export default function Home() {
-  return (
-    <main className="bg-black">
-      <Hero />
-      <About />
-      <Spacer />
-    </main>
-  );
+	return (
+		<main className="bg-black relative">
+			<div className="overflow-hidden">
+				<Hero />
+				<About />
+			</div>
+			<Features />
+			<Spacer />
+		</main>
+	);
 }

@@ -8,7 +8,8 @@ export const Hero = () => {
 	const mainRef = useRef<HTMLDivElement>(null);
 	useGSAP(() => {
 		if (mainRef.current) {
-			gsap.to(mainRef.current, {
+			const tl = gsap.timeline();
+			tl.to(mainRef.current, {
 				scale: 0.8,
 				rotation: -5,
 				transformOrigin: "bottom center",
@@ -24,7 +25,7 @@ export const Hero = () => {
 	}, {});
 	return (
 		<div
-			className="h-screen  sticky top-0 w-full bg-[#5546ff] flex justify-center items-center"
+			className="h-screen  sticky  top-0 w-full bg-[#5546ff] flex justify-center items-center"
 			ref={mainRef}
 		>
 			<h1 className="text-8xl text-white">HELLO</h1>
