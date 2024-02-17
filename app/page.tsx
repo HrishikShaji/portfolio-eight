@@ -11,6 +11,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 export default function Home() {
 	return (
 		<main className="">
+			<Hero />
 			<Spacer />
 		</main>
 	);
