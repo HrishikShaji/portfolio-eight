@@ -3,6 +3,8 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
+import { Education } from "./Education";
+import { Experience } from "./Experience";
 
 export const HorizontalScroll = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +26,7 @@ export const HorizontalScroll = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           pin: containerRef.current,
-          start: "top 20%",
+          start: "top top",
           end: "+=" + amountToScroll,
           scrub: 1,
         },
@@ -66,12 +68,11 @@ export const HorizontalScroll = () => {
   return (
     <div
       ref={containerRef}
-      className="overflow-x-scroll scrollbar-hide h-[80vh] flex gap-10"
+      className="  overflow-hidden scrollbar-hide h-screen flex gap-10"
     >
-      <div className="flex gap-10" ref={targetRef}>
-        <h1 className="text-[400px]  whitespace-nowrap ">
-          THESE ARE MY PROJECTS.
-        </h1>
+      <div className="flex " ref={targetRef}>
+        <Education />
+        <Experience />
         <div className="flex w-screen bg-white overflow-hidden justify-center items-center relative">
           <div
             ref={overlay}

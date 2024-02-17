@@ -14,7 +14,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 export default function Home() {
   return (
     <main className="bg-black relative">
-      <div className="overflow-hidden">
+      <div className="">
         <Hero />
         <About />
       </div>

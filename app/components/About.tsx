@@ -5,31 +5,30 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 export const About = () => {
-	const mainRef = useRef<HTMLDivElement>(null);
-	useGSAP(() => {
-		if (mainRef.current) {
-			const tl = gsap.timeline();
+  const mainRef = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    if (mainRef.current) {
+      const tl = gsap.timeline();
 
-			tl.from(mainRef.current, {
-				scale: 0.75,
-				rotation: 10,
-				transformOrigin: "bottom center",
-				scrollTrigger: {
-					trigger: mainRef.current,
-					start: "top bottom",
-					end: "top 30%",
-					scrub: 1,
-					markers: true,
-				},
-			});
-		}
-	}, {});
-	return (
-		<div
-			className="h-screen     w-full bg-[#b3eb16] flex justify-center items-center"
-			ref={mainRef}
-		>
-			<h1 className="text-8xl text-white">ABOUT</h1>
-		</div>
-	);
+      tl.from(mainRef.current, {
+        scale: 0.75,
+        rotation: 10,
+        transformOrigin: "bottom center",
+        scrollTrigger: {
+          trigger: mainRef.current,
+          start: "top bottom",
+          end: "top 30%",
+          scrub: 1,
+        },
+      });
+    }
+  }, {});
+  return (
+    <div
+      className="h-screen     w-full bg-[#b3eb16] flex justify-center items-center"
+      ref={mainRef}
+    >
+      <h1 className="text-8xl text-white">ABOUT</h1>
+    </div>
+  );
 };
