@@ -5,14 +5,16 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
 import { Hero } from "./components/Hero";
 import { Spacer } from "./components/Spacer";
+import { About } from "./components/About";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 
 export default function Home() {
-	return (
-		<main className="">
-			<Hero />
-			<Spacer />
-		</main>
-	);
+  return (
+    <main className="bg-black">
+      <Hero />
+      <About />
+      <Spacer />
+    </main>
+  );
 }

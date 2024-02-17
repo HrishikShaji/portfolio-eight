@@ -15,7 +15,7 @@ export const Hero = () => {
 				scrollTrigger: {
 					trigger: mainRef.current,
 					start: "bottom bottom",
-					end: "bottom center",
+					end: "bottom 20%",
 					scrub: 1,
 					markers: true,
 				},
@@ -24,7 +24,7 @@ export const Hero = () => {
 	}, {});
 	return (
 		<div
-			className="h-screen  sticky -z-10 top-0 w-full bg-teal-800 flex justify-center items-center"
+			className="h-screen  sticky top-0 w-full bg-[#5546ff] flex justify-center items-center"
 			ref={mainRef}
 		>
 			<h1 className="text-8xl text-white">HELLO</h1>
