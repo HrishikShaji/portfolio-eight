@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "one";
-  src: url(../humane-font/Humane-Bold.ttf);
-}
-
-h1 {
-  font-family: "one";
-}
-
 .main {
   position: relative;
   display: flex;

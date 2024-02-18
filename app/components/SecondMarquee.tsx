@@ -1,17 +1,32 @@
 "use client";
-import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
-export default function SecondMarquee() {
+interface SecondMarqueeProps {
+	speed: number;
+}
+
+export default function SecondMarquee({ speed }: SecondMarqueeProps) {
 	const firstText = useRef(null);
 	const secondText = useRef(null);
 	const slider = useRef(null);
-	let xPercent = 0;
-	let direction = -1;
 
 	useEffect(() => {
+		let xPercent = 0;
+		let direction = 1;
+		const animate = () => {
+			if (xPercent < -100) {
+				xPercent = 0;
+			} else if (xPercent > 0) {
+				xPercent = -100;
+			}
+			gsap.set(firstText.current, { xPercent: xPercent });
+			gsap.set(secondText.current, { xPercent: xPercent });
+			requestAnimationFrame(animate);
+			xPercent += speed * direction;
+		};
+
 		gsap.registerPlugin(ScrollTrigger);
 		gsap.to(slider.current, {
 			scrollTrigger: {
@@ -26,26 +41,22 @@ export default function SecondMarquee() {
 		requestAnimationFrame(animate);
 	}, []);
 
-	const animate = () => {
-		if (xPercent < -100) {
-			xPercent = 0;
-		} else if (xPercent > 0) {
-			xPercent = -100;
-		}
-		gsap.set(firstText.current, { xPercent: xPercent });
-		gsap.set(secondText.current, { xPercent: xPercent });
-		requestAnimationFrame(animate);
-		xPercent += 0.1 * direction;
-	};
-
 	return (
-		<main className="main">
-			<div className="sliderContainer">
-				<div ref={slider} className="slider">
-					<p ref={firstText}>Freelance Developer -</p>
-					<p ref={secondText}>Freelance Developer -</p>
-				</div>
-			</div>
-		</main>
+		<div ref={slider} className="relative whitespace-nowrap">
+			<p
+				style={{ willChange: "transform", lineHeight: "350px" }}
+				ref={firstText}
+				className="font-bebas text-[400px] text-black inline-block"
+			>
+				ANAKIN SKYWALKER *
+			</p>
+			<p
+				style={{ willChange: "transform", lineHeight: "350px" }}
+				ref={secondText}
+				className="text-[400px] font-bebas  text-black absolute inline-block top-0 left-[100%]"
+			>
+				ANAKIN SKYWALKER *
+			</p>
+		</div>
 	);
 }

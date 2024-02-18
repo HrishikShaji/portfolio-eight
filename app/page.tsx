@@ -18,7 +18,6 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 export default function Home() {
 	return (
 		<main className="bg-black relative">
-			<SecondMarquee />
 			<div className="">
 				<Hero />
 				<About />
