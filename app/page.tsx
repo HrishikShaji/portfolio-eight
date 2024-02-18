@@ -11,12 +11,14 @@ import { HorizontalScroll } from "./components/HorizontalScroll";
 import { Projects } from "./components/Projects";
 import { Testimonials } from "./components/Testimonials";
 import { Contact } from "./components/Contact";
+import SecondMarquee from "./components/SecondMarquee";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 
 export default function Home() {
 	return (
 		<main className="bg-black relative">
+			<SecondMarquee />
 			<div className="">
 				<Hero />
 				<About />
