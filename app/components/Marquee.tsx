@@ -1,78 +1,75 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 interface MarqueeProps {
-	text: string;
-	number: number;
-	colorIndex: number;
+	speed: number;
+	scroll: boolean;
+	initialDirection: number;
 }
 
-export const Marquee: React.FC<MarqueeProps> = ({
-	text,
-	number,
-	colorIndex,
-}) => {
+export default function Marquee({
+	speed,
+	scroll,
+	initialDirection,
+}: MarqueeProps) {
 	const firstText = useRef(null);
 	const secondText = useRef(null);
 	const slider = useRef(null);
-	const directionRef = useRef(-1); // Use useRef to store direction value
+	useGSAP(
+		() => {
+			let xPercent = 0;
+			let direction = initialDirection;
 
-	let xPercent = 0;
-	const animation = () => {
-		if (xPercent <= -100) {
-			xPercent = 0;
-		}
-		if (xPercent > 0) {
-			xPercent = -100;
-		}
-		gsap.set(firstText.current, { xPercent: xPercent });
-		gsap.set(secondText.current, { xPercent: xPercent });
-		xPercent += 0.1 * directionRef.current; // Use directionRef
-		requestAnimationFrame(animation);
-	};
-	useEffect(() => {
-		gsap.registerPlugin(ScrollTrigger);
+			const animate = () => {
+				if (xPercent <= -100) {
+					xPercent = 0;
+				}
+				if (xPercent > 0) {
+					xPercent = -100;
+				}
+				gsap.set(firstText.current, { xPercent: xPercent });
+				gsap.set(secondText.current, { xPercent: xPercent });
+				requestAnimationFrame(animate);
+				xPercent += speed * direction;
+			};
 
-		requestAnimationFrame(animation);
+			if (scroll) {
+				gsap.to(slider.current, {
+					scrollTrigger: {
+						trigger: document.documentElement,
+						scrub: 0.25,
+						start: 0,
+						end: window.innerHeight,
+						onUpdate: (e) => (direction = e.direction * -1),
+					},
+					x: "-500px",
+				});
+			}
 
-		gsap.to(slider.current, {
-			scrollTrigger: {
-				trigger: slider.current,
-				start: "top bottom",
-				end: "top top",
-				scrub: 5,
-				onUpdate: (e) => {
-					directionRef.current = e.direction * -1; // Update directionRef
-				},
-			},
-		});
-	}, []);
+			requestAnimationFrame(animate);
+		},
+		{ dependencies: [scroll, speed, initialDirection], scope: slider },
+	);
 
 	return (
-		<div ref={slider} className="relative whitespace-nowrap overflow-hidden">
-			<div
+		<div ref={slider} className="relative whitespace-nowrap">
+			<p
+				style={{ willChange: "transform", lineHeight: "350px" }}
 				ref={firstText}
-				className="text-[300px] leading-0 flex-grow relative m-0 flex text-white font-semibold"
+				className="font-bebas text-[400px] text-black inline-block"
 			>
-				{Array.from({ length: number }).map((_, i) => (
-					<h1 key={i} className={i === colorIndex ? "text-red-500 " : ""}>
-						{text}
-					</h1>
-				))}
-			</div>
-			<div
+				ANAKIN SKYWALKER *
+			</p>
+			<p
+				style={{ willChange: "transform", lineHeight: "350px" }}
 				ref={secondText}
-				className="text-[300px] m-0 leading-0   text-white  font-semibold flex  absolute left-[100%]  top-0"
+				className="text-[400px] font-bebas  text-black absolute inline-block top-0 left-[100%]"
 			>
-				{Array.from({ length: number }).map((_, i) => (
-					<h1 key={i} className={i === colorIndex ? "text-red-500 " : ""}>
-						{text}
-					</h1>
-				))}
-			</div>
+				ANAKIN SKYWALKER *
+			</p>
 		</div>
 	);
-};
+}
