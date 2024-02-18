@@ -7,6 +7,7 @@ export const data = {
 		phone: "1234567890",
 		email: "anakinskywalker@gmail.com",
 		img: "https://wallpapercave.com/wp/wp5709607.jpg",
+		profileImg: "https://wallpapercave.com/wp/wp4507720.jpg",
 	},
 	navLinks: [
 		{ title: "Home", path: "#home" },

@@ -19,7 +19,6 @@ export const Hero = () => {
 					start: "bottom bottom",
 					end: "bottom 20%",
 					scrub: 1,
-					markers: true,
 				},
 			});
 		}
