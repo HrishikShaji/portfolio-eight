@@ -12,21 +12,24 @@ import { Projects } from "./components/Projects";
 import { Testimonials } from "./components/Testimonials";
 import { Contact } from "./components/Contact";
 import SecondMarquee from "./components/SecondMarquee";
+import { ScrollContextProvider } from "./components/ScrollContext";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 
 export default function Home() {
-	return (
-		<main className="bg-black relative">
-			<div className="">
-				<Hero />
-				<About />
-			</div>
-			<Features />
-			<HorizontalScroll />
-			<Projects />
-			<Testimonials />
-			<Contact />
-		</main>
-	);
+  return (
+    <main className="bg-black relative">
+      <div className="">
+        <Hero />
+        <About />
+      </div>
+      <Features />
+      <ScrollContextProvider>
+        <HorizontalScroll />
+      </ScrollContextProvider>
+      <Projects />
+      <Testimonials />
+      <Contact />
+    </main>
+  );
 }
