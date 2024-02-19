@@ -2,12 +2,15 @@ import { useGSAP } from "@gsap/react";
 import { data } from "../lib/data";
 import { useRef } from "react";
 import gsap from "gsap";
+import { AnimateText } from "./AnimateText";
+import { Feature } from "./Feature";
 
 export const Features = () => {
   const mainRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLHeadingElement>(null);
 
   useGSAP(() => {
-    if (mainRef.current) {
+    if (mainRef.current && targetRef.current) {
       gsap.from(".feature", {
         stagger: 0.3,
         y: 300,
@@ -22,15 +25,9 @@ export const Features = () => {
   }, {});
 
   return (
-    <div ref={mainRef} className="grid grid-cols-3  z-40 ">
+    <div ref={mainRef} className="grid grid-cols-2  z-40 ">
       {data.features.data.map((item, i) => (
-        <div
-          key={i}
-          className="feature gap-4 p-20 bg-[#fc7eff]  text-center w-full  flex flex-col"
-        >
-          <h1 className="text-4xl">{item.title}</h1>
-          <h1 className="text-xl">{item.desc}</h1>
-        </div>
+        <Feature item={item} key={i} />
       ))}
     </div>
   );

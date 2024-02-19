@@ -9,6 +9,7 @@ import { data } from "../lib/data";
 
 export const About = () => {
 	const mainRef = useRef<HTMLDivElement>(null);
+	const imageRef = useRef<HTMLImageElement>(null);
 	useGSAP(() => {
 		if (mainRef.current) {
 			const tl = gsap.timeline();
@@ -25,22 +26,39 @@ export const About = () => {
 				},
 			});
 		}
+		if (imageRef.current) {
+			const tl = gsap.timeline();
+
+			tl.from(imageRef.current, {
+				scale: 1.5,
+				transformOrigin: "center center",
+				scrollTrigger: {
+					trigger: imageRef.current,
+					start: "top center",
+					end: "top 30%",
+					scrub: 1,
+				},
+			});
+		}
 	}, {});
 	return (
 		<div
 			className="h-screen     w-full bg-[#b3eb16] flex flex-col gap-20 p-5"
 			ref={mainRef}
 		>
-			<AnimateText word="ABOUT" />
-			<div className="flex h-full gap-10">
-				<Image
-					src={data.personal.profileImg}
-					alt="image"
-					height={1000}
-					width={1000}
-					className="object-cover h-full w-[30%]"
-				/>
-				<p className="text-2xl  font-inter">{data.about.description}</p>
+			<AnimateText key="about" word="ABOUT" position="top 70%" />
+			<div className="flex w-full h-full gap-10">
+				<div className="h-full w-[30vw] overflow-hidden">
+					<Image
+						ref={imageRef}
+						src={data.personal.profileImg}
+						alt="image"
+						height={1000}
+						width={1000}
+						className="object-cover h-full w-full"
+					/>
+				</div>
+				<p className="text-2xl w-[70vw] font-inter">{data.about.description}</p>
 			</div>
 		</div>
 	);
