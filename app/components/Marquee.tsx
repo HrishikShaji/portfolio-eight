@@ -8,12 +8,16 @@ interface MarqueeProps {
 	speed: number;
 	scroll: boolean;
 	initialDirection: number;
+	word: string;
+	size: string;
 }
 
 export default function Marquee({
 	speed,
 	scroll,
 	initialDirection,
+	word,
+	size,
 }: MarqueeProps) {
 	const firstText = useRef(null);
 	const secondText = useRef(null);
@@ -57,18 +61,18 @@ export default function Marquee({
 	return (
 		<div ref={slider} className="relative whitespace-nowrap">
 			<p
-				style={{ willChange: "transform", lineHeight: "350px" }}
+				style={{ willChange: "transform", fontSize: size, lineHeight: size }}
 				ref={firstText}
-				className="font-bebas text-[400px] text-black inline-block"
+				className="font-bebas  text-black inline-block"
 			>
-				ANAKIN SKYWALKER *
+				{word}
 			</p>
 			<p
-				style={{ willChange: "transform", lineHeight: "350px" }}
+				style={{ willChange: "transform", fontSize: size, lineHeight: size }}
 				ref={secondText}
 				className="text-[400px] font-bebas  text-black absolute inline-block top-0 left-[100%]"
 			>
-				ANAKIN SKYWALKER *
+				{word}
 			</p>
 		</div>
 	);
