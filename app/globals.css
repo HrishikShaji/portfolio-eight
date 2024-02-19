@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .custom-clip {
-  clip-path: polygon(0 0%, 100% 0, 100% 95%, 0 95%);
+  clip-path: polygon(0 0%, 100% 0, 100% 82%, 0 82%);
 }
 
 .main {

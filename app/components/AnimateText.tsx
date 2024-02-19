@@ -12,40 +12,41 @@ export const AnimateText = ({
 }) => {
 	const targetRef = useRef<HTMLHeadingElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
-	useGSAP(
-		() => {
+	useGSAP(() => {
+		if (targetRef.current) {
 			const elements =
 				targetRef.current?.getElementsByClassName("text-animate");
 			if (elements) {
 				gsap.fromTo(
 					elements,
 					{
-						xPercent: 100,
+						yPercent: 100,
 					},
 					{
-						xPercent: 0,
-						stagger: 0.05,
-						duration: 0.1,
+						yPercent: 0,
+						stagger: 0.03,
 						scrollTrigger: {
-							trigger: containerRef.current,
-							start: "top center",
-							end: "top center",
+							trigger: targetRef.current,
+							start: position,
+							end: position,
 							markers: true,
 						},
-						ease: "bounce",
+						ease: "none",
 					},
 				);
 			}
-		},
-		{ dependencies: [word] },
-	);
+		}
+	}, {});
 
 	return (
 		<div className="" ref={containerRef}>
-			<h1 className=" font-inter text-5xl flex overflow-hidden" ref={targetRef}>
-				{word.split("").map((letter, i) => (
-					<span className="text-animate   " key={i}>
-						{letter}
+			<h1
+				className="custom-clip font-humane text-[100px] flex "
+				ref={targetRef}
+			>
+				{Array.from(word).map((letter, i) => (
+					<span className="text-animate   leading-none" key={i}>
+						{letter === " " ? "\u00A0" : letter}
 					</span>
 				))}
 			</h1>
