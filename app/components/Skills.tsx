@@ -1,15 +1,16 @@
 import { data } from "../lib/data";
 import Marquee from "./Marquee";
+import VerticalMarquee from "./VerticalMarquee";
 
 export const Skills = () => {
   return (
-    <div className="h-screen relative w-full flex bg-[#5546ff]">
-      <div className="absolute top-40 -rotate-90">
+    <div className="h-screen relative flex overflow-hidden w-screen  bg-[#5546ff]">
+      <div className="absolute  -rotate-90 right-0">
         <Marquee
           speed={0.2}
-          scroll={true}
+          scroll={false}
           initialDirection={-1}
-          word="SKILLS *"
+          word="SKILLS * SKILLS * SKILLS *"
           size="200px"
         />
       </div>

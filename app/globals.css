@@ -5,7 +5,28 @@
 .custom-clip {
   clip-path: polygon(0 0%, 100% 0, 100% 82%, 0 82%);
 }
+.wrapper::after {
+  height: 448px;
+  width: 48px;
+  content: "";
+  position: absolute;
+  border: solid 1px white;
+}
 
+.box {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  background: red;
+  font-size: 25px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.boxes {
+  position: relative;
+  bottom: -50px;
+}
 .main {
   position: relative;
   display: flex;

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-interface MarqueeProps {
+interface VerticalMarqueeProps {
   speed: number;
   scroll: boolean;
   initialDirection: number;
@@ -12,32 +12,32 @@ interface MarqueeProps {
   size: string;
 }
 
-export default function Marquee({
+export default function VerticalMarquee({
   speed,
   scroll,
   initialDirection,
   word,
   size,
-}: MarqueeProps) {
+}: VerticalMarqueeProps) {
   const firstText = useRef(null);
   const secondText = useRef(null);
   const slider = useRef(null);
   useGSAP(
     () => {
-      let xPercent = 0;
+      let yPercent = 0;
       let direction = initialDirection;
 
       const animate = () => {
-        if (xPercent <= -100) {
-          xPercent = 0;
+        if (yPercent <= -100) {
+          yPercent = 0;
         }
-        if (xPercent > 0) {
-          xPercent = -100;
+        if (yPercent > 0) {
+          yPercent = -100;
         }
-        gsap.set(firstText.current, { xPercent: xPercent });
-        gsap.set(secondText.current, { xPercent: xPercent });
+        gsap.set(firstText.current, { yPercent: yPercent });
+        gsap.set(secondText.current, { yPercent: yPercent });
         requestAnimationFrame(animate);
-        xPercent += speed * direction;
+        yPercent += speed * direction;
       };
 
       if (scroll) {
@@ -49,7 +49,7 @@ export default function Marquee({
             end: window.innerHeight,
             onUpdate: (e) => (direction = e.direction * -1),
           },
-          x: "-500px",
+          y: "-500px",
         });
       }
 
@@ -61,24 +61,16 @@ export default function Marquee({
   return (
     <div ref={slider} className="relative whitespace-nowrap">
       <p
-        style={{
-          willChange: "transform",
-          fontSize: size,
-          lineHeight: size,
-        }}
+        style={{ willChange: "transform", fontSize: size, lineHeight: size }}
         ref={firstText}
-        className="font-bebas relative  text-black inline-block"
+        className="font-bebas  text-black inline-block rotate-90"
       >
         {word}
       </p>
       <p
-        style={{
-          willChange: "transform",
-          fontSize: size,
-          lineHeight: size,
-        }}
+        style={{ willChange: "transform", fontSize: size, lineHeight: size }}
         ref={secondText}
-        className="text-[400px] font-bebas  text-black absolute inline-block top-0 left-[100%]"
+        className=" font-bebas  text-black absolute inline-block top-[100%] left-0 rotate-90"
       >
         {word}
       </p>
