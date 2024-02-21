@@ -11,7 +11,6 @@ import { HorizontalScroll } from "./components/HorizontalScroll";
 import { Projects } from "./components/Projects";
 import { Testimonials } from "./components/Testimonials";
 import { Contact } from "./components/Contact";
-import SecondMarquee from "./components/SecondMarquee";
 import { ScrollContextProvider } from "./components/ScrollContext";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);

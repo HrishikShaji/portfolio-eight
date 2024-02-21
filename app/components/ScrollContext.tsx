@@ -25,16 +25,16 @@ export const ScrollContextProvider: React.FC<PropsWithChildren<{}>> = ({
       if (containerRef.current && targetRef.current) {
         const amountToScroll =
           targetRef.current.offsetWidth - window.innerWidth;
-
+        const sectionWidth = targetRef.current.offsetWidth / 4;
         scrollTween.current = gsap.to(targetRef.current, {
-          x: -amountToScroll,
+          x: -amountToScroll - sectionWidth,
           duration: 2,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
             pin: containerRef.current,
             start: "left top",
-            end: `+=${amountToScroll}`,
+            end: `+=${amountToScroll - sectionWidth}`,
             scrub: 1,
           },
         });
