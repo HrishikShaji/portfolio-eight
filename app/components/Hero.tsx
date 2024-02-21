@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import Marquee from "./Marquee";
-import { VerticalSlider } from "@/VerticalSlider";
+import { NewMarquee } from "./NewMarquee";
 
 export const Hero = () => {
 	const mainRef = useRef<HTMLDivElement>(null);
@@ -25,18 +25,15 @@ export const Hero = () => {
 		}
 	}, {});
 	return (
-		<div
-			className="h-screen  sticky  top-0 w-full bg-[#5546ff] flex flex-col"
-			ref={mainRef}
-		>
-			<div className="h-full relative overflow-hidden">
-				<VerticalSlider />
-				<div className="absolute top-40">
+		<div className="h-screen  sticky  top-0 w-full bg-[#5546ff] " ref={mainRef}>
+			<div className="h-full w-full relative overflow-hidden">
+				<NewMarquee />
+				<div className="absolute  bottom-0">
 					<Marquee
 						speed={0.2}
-						scroll={true}
+						scroll={false}
 						initialDirection={-1}
-						word="ANAKIN SKYWALKER *"
+						word="ANAKIN SKYWALKER"
 						size="400px"
 					/>
 				</div>

@@ -5,14 +5,7 @@ import { useEffect } from "react";
 
 export const VerticalSlider = () => {
 	useEffect(() => {
-		var colors = ["#f38630", "#6fb936", "#ccc", "#6fb936"];
 		var wrap = gsap.utils.wrap(-100, 400);
-
-		//initially colorize each box and position in a row
-		gsap.set(".box", {
-			backgroundColor: (i) => colors[i % colors.length],
-			y: (i) => i * 50,
-		});
 
 		gsap.to(".box", {
 			duration: 5,
@@ -26,7 +19,7 @@ export const VerticalSlider = () => {
 	}, []);
 
 	return (
-		<div className="wrapper">
+		<div className="h-[450px] w-[50px] relative m-auto overflow-hidden after:h-[448px] after:w-[48px] after:content-[''] after:absolute after:border-2 after:border-black">
 			<div className="boxes">
 				<div className="box">1</div>
 				<div className="box">2</div>
