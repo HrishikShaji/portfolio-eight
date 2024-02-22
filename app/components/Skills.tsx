@@ -30,7 +30,7 @@ export const Skills = () => {
 					size="200px"
 				/>
 			</div>
-			<div className="absolute left-[200px] overflow-hidden w-[calc(100vw_-_400px)] bg-white h-full">
+			<div className="absolute left-[200px] overflow-hidden w-[calc(100vw_-_400px)] flex items-center h-full bg-gray-500">
 				<div className="absolute bg-gray-500 ">
 					{skills.map((skill, i) => (
 						<div className="w-fit" key={i}>

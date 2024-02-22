@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useEffect, useContext, useRef } from "react";
 import { ScrollContext } from "./ScrollContext";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { Projects } from "./Projects";
 
 export const WorkHeading = () => {
 	const refs = useContext(ScrollContext);
@@ -86,13 +87,19 @@ export const WorkHeading = () => {
 		>
 			<div className="h-screen w-screen ">
 				<div
-					className="w-screen top-0 z-20 absolute  bg-green-500  h-screen "
+					className="w-screen top-0 z-20 absolute  bg-green-500 flex justify-center items-center h-screen "
 					ref={firstRef}
-				/>
+				>
+					<h1 className="text-[400px] font-humane text-white">
+						SEE MY PROJECTS
+					</h1>
+				</div>
 				<div
-					className="w-screen absolute top-0 z-40  bg-pink-500  h-screen "
+					className="w-screen absolute top-0 z-40    h-full "
 					ref={secondRef}
-				/>
+				>
+					<Projects />
+				</div>
 			</div>
 			<div ref={secondContainerRef} className="h-screen w-screen "></div>
 		</div>
