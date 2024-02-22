@@ -2,6 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import { createContext, useRef, PropsWithChildren } from "react";
 
 interface Refs {
@@ -26,7 +27,10 @@ export const ScrollContextProvider: React.FC<PropsWithChildren<{}>> = ({
 				const amountToScroll =
 					targetRef.current.offsetWidth - window.innerWidth;
 				const sectionWidth = targetRef.current.offsetWidth / 4;
+				console.log(sectionWidth, amountToScroll / 3);
+				const newScroll = amountToScroll - sectionWidth;
 				scrollTween.current = gsap.to(targetRef.current, {
+					id: "horizontal-scroll",
 					x: -amountToScroll,
 					duration: 2,
 					ease: "none",
@@ -38,6 +42,8 @@ export const ScrollContextProvider: React.FC<PropsWithChildren<{}>> = ({
 						scrub: 1,
 					},
 				});
+
+				return () => ScrollTrigger.getById("horizontal-scroll")?.kill(true);
 			}
 		},
 		{ dependencies: [scrollTween.current] },
