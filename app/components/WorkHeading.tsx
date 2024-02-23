@@ -76,8 +76,8 @@ export const WorkHeading = () => {
       }
     }, mainRef);
 
-    return () => ctx.kill();
-  }, [refs]);
+    return () => ctx.revert();
+  }, []);
   return (
     <div
       ref={mainRef}

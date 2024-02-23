@@ -1,11 +1,8 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import {
   useLayoutEffect,
-  useEffect,
   createContext,
   useRef,
   PropsWithChildren,
