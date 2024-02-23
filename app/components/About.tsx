@@ -1,8 +1,7 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { AnimateText } from "./AnimateText";
 import Image from "next/image";
 import { data } from "../lib/data";
@@ -10,35 +9,34 @@ import { data } from "../lib/data";
 export const About = () => {
 	const mainRef = useRef<HTMLDivElement>(null);
 	const imageRef = useRef<HTMLImageElement>(null);
-	useGSAP(
-		() => {
-			if (mainRef.current && imageRef.current) {
-				const tl = gsap.timeline();
+	useLayoutEffect(() => {
+		let ctx = gsap.context(() => {
+			const tl = gsap.timeline();
 
-				tl.from(mainRef.current, {
-					scale: 0.75,
-					rotation: 10,
-					transformOrigin: "bottom center",
-					scrollTrigger: {
-						trigger: mainRef.current,
-						start: "top bottom",
-						end: "top 30%",
-						scrub: 1,
-					},
-				}).from(imageRef.current, {
-					scale: 1.5,
-					transformOrigin: "center center",
-					scrollTrigger: {
-						trigger: imageRef.current,
-						start: "top center",
-						end: "top 30%",
-						scrub: 1,
-					},
-				});
-			}
-		},
-		{ scope: mainRef },
-	);
+			tl.from(mainRef.current, {
+				scale: 0.75,
+				rotation: 10,
+				transformOrigin: "bottom center",
+				scrollTrigger: {
+					trigger: mainRef.current,
+					start: "top bottom",
+					end: "top 30%",
+					scrub: 1,
+				},
+			}).from(imageRef.current, {
+				scale: 1.5,
+				transformOrigin: "center center",
+				scrollTrigger: {
+					trigger: imageRef.current,
+					start: "top center",
+					end: "top 30%",
+					scrub: 1,
+				},
+			});
+		}, mainRef);
+
+		return () => ctx.revert();
+	}, []);
 	return (
 		<div
 			className="h-screen     w-full bg-[#b3eb16] flex flex-col gap-20 p-5"

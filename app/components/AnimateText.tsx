@@ -1,7 +1,6 @@
 "use client";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 export const AnimateText = ({
 	word,
@@ -12,30 +11,28 @@ export const AnimateText = ({
 }) => {
 	const targetRef = useRef<HTMLHeadingElement>(null);
 	const characterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-	useGSAP(
-		() => {
-			if (targetRef.current) {
+	useLayoutEffect(() => {
+		let ctx = gsap.context(() => {
+			gsap.fromTo(
+				characterRefs.current,
+				{
+					yPercent: 100,
+				},
+				{
+					yPercent: 0,
+					stagger: 0.03,
+					scrollTrigger: {
+						trigger: targetRef.current,
+						start: position,
+						end: position,
+					},
+					ease: "none",
+				},
+			);
+		}, targetRef);
 
-				gsap.fromTo(
-					characterRefs.current,
-					{
-						yPercent: 100,
-					},
-					{
-						yPercent: 0,
-						stagger: 0.03,
-						scrollTrigger: {
-							trigger: targetRef.current,
-							start: position,
-							end: position,
-						},
-						ease: "none",
-					},
-				);
-			}
-		},
-		{ scope: targetRef },
-	);
+		return () => ctx.revert();
+	}, []);
 
 	return (
 		<h1 className="custom-clip font-humane text-[100px] flex " ref={targetRef}>
