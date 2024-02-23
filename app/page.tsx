@@ -14,18 +14,18 @@ import { ScrollContextProvider } from "./components/ScrollContext";
 gsap.registerPlugin(useGSAP, ScrollTrigger, MotionPathPlugin);
 
 export default function Home() {
-	return (
-		<main className="bg-black relative">
-			<div className="">
-				<Hero />
-				<About />
-			</div>
-			<Features />
-			<ScrollContextProvider>
-				<HorizontalScroll />
-			</ScrollContextProvider>
-			<Testimonials />
-			<Contact />
-		</main>
-	);
+  return (
+    <main className="bg-black relative">
+      <div className="">
+        <Hero />
+        <About />
+      </div>
+      <Features />
+      <ScrollContextProvider>
+        <HorizontalScroll />
+      </ScrollContextProvider>
+      <Testimonials />
+      <Contact />
+    </main>
+  );
 }
