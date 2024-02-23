@@ -8,20 +8,23 @@ import { Feature } from "./Feature";
 export const Features = () => {
 	const mainRef = useRef<HTMLDivElement>(null);
 
-	useGSAP(() => {
-		if (mainRef.current) {
-			gsap.from(".feature", {
-				stagger: 0.3,
-				y: 300,
-				scrollTrigger: {
-					trigger: mainRef.current,
-					start: "top bottom",
-					end: "top top",
-					scrub: 1,
-				},
-			});
-		}
-	}, {});
+	useGSAP(
+		() => {
+			if (mainRef.current) {
+				gsap.from(".feature", {
+					stagger: 0.3,
+					y: 300,
+					scrollTrigger: {
+						trigger: mainRef.current,
+						start: "top bottom",
+						end: "top top",
+						scrub: 1,
+					},
+				});
+			}
+		},
+		{ scope: mainRef },
+	);
 
 	return (
 		<div ref={mainRef} className="grid grid-cols-2  z-40 ">

@@ -3,7 +3,6 @@
 import gsap from "gsap";
 import { useEffect, useContext, useRef } from "react";
 import { ScrollContext } from "./ScrollContext";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { Projects } from "./Projects";
 
 export const WorkHeading = () => {
@@ -76,7 +75,7 @@ export const WorkHeading = () => {
 					},
 				});
 			}
-		});
+		}, mainRef);
 
 		return () => ctx.kill();
 	}, [refs]);

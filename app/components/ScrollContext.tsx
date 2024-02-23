@@ -26,9 +26,6 @@ export const ScrollContextProvider: React.FC<PropsWithChildren<{}>> = ({
 			if (containerRef.current && targetRef.current) {
 				const amountToScroll =
 					targetRef.current.offsetWidth - window.innerWidth;
-				const sectionWidth = targetRef.current.offsetWidth / 4;
-				console.log(sectionWidth, amountToScroll / 3);
-				const newScroll = amountToScroll - sectionWidth;
 				scrollTween.current = gsap.to(targetRef.current, {
 					id: "horizontal-scroll",
 					x: -amountToScroll,
@@ -46,7 +43,7 @@ export const ScrollContextProvider: React.FC<PropsWithChildren<{}>> = ({
 				return () => ScrollTrigger.getById("horizontal-scroll")?.kill(true);
 			}
 		},
-		{ dependencies: [scrollTween.current] },
+		{ dependencies: [scrollTween.current], scope: containerRef },
 	);
 
 	const refs = {

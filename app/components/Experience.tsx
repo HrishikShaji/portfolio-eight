@@ -32,7 +32,7 @@ export const Experience = () => {
 					);
 				}
 			}
-		});
+		}, containerRef);
 
 		return () => ctx.kill();
 	}, [refs]);

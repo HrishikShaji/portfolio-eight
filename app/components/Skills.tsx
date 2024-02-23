@@ -1,4 +1,3 @@
-import { data } from "../lib/data";
 import Marquee from "./Marquee";
 
 const skills = [
